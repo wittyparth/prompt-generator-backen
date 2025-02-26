@@ -5,11 +5,20 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.schema.output_parser import StrOutputParser
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change this to your frontend URL in production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Set your Google Gemini API Key (Ensure it's set in environment variables)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
