@@ -33,18 +33,18 @@ class PromptRequest(BaseModel):
     vague_prompt: str
     purpose: str
     tone: str
-    complexity: str
+    complexity: str  # Keep it as str if frontend sends it as a string
     target_audience: str
     format: str
     length: str
-    keywords: list[str]
+    keywords: list[str]  # ✅ Ensure this is a list
     style: str
-    references: list[str]
+    references: list[str]  # ✅ Ensure this is a list
     vocabulary_level: str
     emotion: str
     cultural_considerations: str
-    visual_aids: str
-    interactivity: str
+    visual_aids: list[str]  # ✅ FIXED: Change from str to list[str]
+    interactivity: list[str]  # ✅ FIXED: Change from str to list[str]
     restrictions: str
 
 # Define route for processing prompt
